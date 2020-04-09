@@ -5,6 +5,7 @@ from discord_webhook import DiscordWebhook, DiscordEmbed
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
+import os
 
 def query_to_bigquery(query):
     client = bigquery.Client()
@@ -31,7 +32,7 @@ def get_and_save_image():
     plt.savefig('daily.png')
 
 def send_to_discord():
-    url = 'https://discordapp.com/api/webhooks/697903828103725128/ovmQsqjoK0R3m6ygO773evESO8gMDkVTFFHeO49XdDNUFIfAXxsC1OrhiJWjDsQH9wDx'
+    url = os.getenv('DISCORD_URL')
     webhook = DiscordWebhook(url = url, username = 'daily')
     with open('../daily-report/daily.png', 'rb') as f:
         webhook.add_file(file= f.read(), filename = 'daily.png')
