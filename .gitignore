@@ -1,7 +1,7 @@
 *cache*
 *cpython-38*
 env.sh
-creds/*
+creds/creds.json
 *__pycache__*
 daily.png
 fn/query.py
