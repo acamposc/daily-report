@@ -3,7 +3,7 @@
 
 ## run in cloud build
  pip3 install google-cloud-bigquery
- pip3 install matplotlib pandas numpy discord-web
+ pip3 install matplotlib pandas numpy discord-webhook
 
 source env.sh
 # run anywhere
