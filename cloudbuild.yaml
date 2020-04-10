@@ -46,7 +46,9 @@ steps:
     id: decrypt query
   - name: python:3.8-slim-buster
     args:
-      - sh app.sh
+      - bash
+      - app.sh
+      
     waitFor:
       - decrypt query
 timeout: 900s
