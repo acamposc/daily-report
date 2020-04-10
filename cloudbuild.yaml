@@ -1,0 +1,52 @@
+steps:
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - kms
+      - decrypt
+      - --ciphertext-file
+      - env.sh.enc
+      - --plaintext-file
+      - env.sh
+      - --location
+      - us-central1
+      - --keyring
+      - dailyring
+      - --key
+      - dailykey
+    id: decrypt env vars
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - kms
+      - decrypt
+      - --ciphertext-file
+      - creds/creds.json.enc
+      - --plaintext-file
+      - creds/creds.json
+      - --location
+      - us-central1
+      - --keyring
+      - dailyring
+      - --key
+      - dailykey
+    id: decrypt creds
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - kms
+      - decrypt
+      - --ciphertext-file
+      - fn/query.py.enc
+      - --plaintext-file
+      - fn/query.py
+      - --location
+      - us-central1
+      - --keyring
+      - dailyring
+      - --key
+      - dailykey
+    id: decrypt query
+  - name: python:3.8-slim-buster
+    args:
+      - sh app.sh
+    waitFor:
+      - decrypt query
+timeout: 900s
