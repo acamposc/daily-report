@@ -4,3 +4,4 @@ env.sh
 creds/creds.json
 *__pycache__*
 fn/query.py
+kms.txt
