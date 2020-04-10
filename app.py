@@ -34,7 +34,7 @@ def get_and_save_image():
 def send_to_discord():
     url = os.getenv('DISCORD_URL')
     webhook = DiscordWebhook(url = url, username = 'daily')
-    with open('../daily.png', 'rb') as f:
+    with open('daily-report/daily.png', 'rb') as f:
         webhook.add_file(file= f.read(), filename = 'daily.png')
     response = webhook.execute()
 
