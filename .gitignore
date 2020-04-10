@@ -4,5 +4,3 @@ env.sh
 creds/creds.json
 *__pycache__*
 fn/query.py
-function.py
-requirements.txt
