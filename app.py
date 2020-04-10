@@ -28,7 +28,7 @@ def get_and_save_image():
     dataframe = query_to_bigquery(query)
     x = dataframe['date'].tolist()
     y = dataframe['users'].tolist()
-    plt = visualize_bar_chart(x = x, x_label = 'date', y = y, y_label = 'users', title = 'Daily users')
+    plt = visualize_bar_chart(x = x, x_label = 'date', y = y, y_label = 'users', title = 'Daily user count for catalogo.movistar.com.pe')
     plt.savefig('daily.png')
 
 def send_to_discord():
