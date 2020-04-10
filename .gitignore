@@ -3,5 +3,4 @@
 env.sh
 creds/creds.json
 *__pycache__*
-daily.png
 fn/query.py
