@@ -1,46 +1,56 @@
-from google.cloud import bigquery
-from fn import query as qr
-from discord_webhook import DiscordWebhook, DiscordEmbed
-
-import matplotlib.pyplot as plt
-import numpy as np
-import datetime
 import os
+from fn import daily as daily
 
-def query_to_bigquery(query):
-    client = bigquery.Client()
-    query_job = client.query(query)
-    result = query_job.result()
-    dataframe = result.to_dataframe()
-    return dataframe
+tiendaonline = daily.DailyReport()
+tiendaonline.main(
+    ['tiendaonline.movistar.com.pe'],
+    [os.getenv('BIGQUERY_DATASET_MOVISTAR')],
+    [15],
+    os.getenv('DISCORD_URL_MOVISTAR'),
+    '360'
+)
 
-def visualize_bar_chart(x,x_label, y, y_label, title):
-    plt.title(title)
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-    index = np.arange(len(x))
-    plt.xticks(index, x, fontsize = 7, rotation=30)
-    plt.bar(index, y)
-    return plt
+catalogo = daily.DailyReport()
+catalogo.main(
+    ['catalogo.movistar.com.pe'],
+    [os.getenv('BIGQUERY_DATASET_MOVISTAR')],
+    [15],
+    os.getenv('DISCORD_URL_MOVISTAR'),
+    '360'
+)
 
-def get_and_save_image():
-    query = qr.query
-    dataframe = query_to_bigquery(query)
-    x = dataframe['date'].tolist()
-    y = dataframe['users'].tolist()
-    plt = visualize_bar_chart(x = x, x_label = 'date', y = y, y_label = 'users', title = 'Daily user count for catalogo.movistar.com.pe')
-    plt.savefig('daily.png')
+publica = daily.DailyReport()
+publica.main(
+    ['www.movistar.com.pe'],
+    [os.getenv('BIGQUERY_DATASET_MOVISTAR')],
+    [15],
+    os.getenv('DISCORD_URL_MOVISTAR'),
+    '360'
+)
 
-def send_to_discord():
-    url = os.getenv('DISCORD_URL')
-    webhook = DiscordWebhook(url = url, username = 'daily')
-    with open('daily.png', 'rb') as f:
-        webhook.add_file(file= f.read(), filename = 'daily.png')
-    response = webhook.execute()
+empresas = daily.DailyReport()
+empresas.main(
+    ['empresas.movistar.com.pe'],
+    [os.getenv('BIGQUERY_DATASET_MOVISTAR')],
+    [15],
+    os.getenv('DISCORD_URL_MOVISTAR'),
+    '360'
+)
 
-def main():
-    get_and_save_image()
-    send_to_discord()
+servicios = daily.DailyReport()
+servicios.main(
+    ['serviciosmovistar.com'],
+    [os.getenv('BIGQUERY_DATASET_MOVISTAR')],
+    [15],
+    os.getenv('DISCORD_URL_MOVISTAR'),
+    '360'
+)
 
-if __name__ == '__main__':
-    main()
+soporte = daily.DailyReport()
+soporte.main(
+    ['soporte.movistar.com.pe'],
+    [os.getenv('BIGQUERY_DATASET_MOVISTAR')],
+    [15],
+    os.getenv('DISCORD_URL_MOVISTAR'),
+    '360'
+)

@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../reporte-unificado"
+		},
+		{
+			"path": "../ppt-py"
+		},
+		{
+			"path": "../ppt-r"
+		},
+		{
+			"path": "../azuredevopsr"
+		},
+		{
+			"path": "."
+		}
+	]
+}
