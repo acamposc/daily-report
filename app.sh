@@ -10,4 +10,4 @@ source env.sh
 PYTHONIOENCODING=utf-8 python3.8 app.py
 
 # remove images
-# rm *png
+#rm *png

@@ -1,6 +1,24 @@
 import os
 from fn import daily as daily
 
+bancofalabella = daily.DailyReport()
+bancofalabella.main(
+    ['bancofalabella.pe'],
+    [os.getenv('BIGQUERY_DATASET_BANCOFALABELLA')],
+    [15],
+    os.getenv('DISCORD_URL_BANCOFALABELLA'),
+    'app+web'
+)
+
+incarail = daily.DailyReport()
+incarail.main(
+    ['incarail.com'],
+    [os.getenv('BIGQUERY_DATASET_INCARAIL')],
+    [15],
+    os.getenv('DISCORD_URL_INCARAIL'),
+    'app+web'
+)
+
 tiendaonline = daily.DailyReport()
 tiendaonline.main(
     ['tiendaonline.movistar.com.pe'],

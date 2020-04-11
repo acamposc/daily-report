@@ -1,5 +1,5 @@
-
-def query(hostname, dataset ,days, ga):
+import os
+def query(hostname, dataset, days, ga):
     if ga == '360':
             for i in hostname:
                 for j in dataset:
@@ -25,7 +25,25 @@ def query(hostname, dataset ,days, ga):
             return query
     
     elif ga == 'app+web':
-        pass
+        print(hostname)
+        for j in dataset:
+            for k in days:
+                query = f"""
+                        SELECT
+                        PARSE_DATE('%Y%m%d',
+                            event_date) AS date,
+                        COUNT(DISTINCT(user_pseudo_id)) AS users
+                        FROM
+                        `{j}`
+                        WHERE
+                        _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d',DATE_SUB(CURRENT_DATE(), INTERVAL {k} DAY))
+                        AND FORMAT_DATE('%Y%m%d',DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY))
+                        GROUP BY
+                        1
+                        ORDER BY
+                        1 ASC
+                        """
+        return query
     
     else: 
         print('error: ga argument should be 360 or app+web')
