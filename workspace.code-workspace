@@ -14,6 +14,17 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../automl"
+		},
+		{
+			"path": "../dbt-env"
+		},
+		{
+			"path": "../pred"
 		}
-	]
+	],
+	"settings": {
+	}
 }
